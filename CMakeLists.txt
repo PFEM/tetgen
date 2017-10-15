@@ -1,14 +1,31 @@
-# Set  the minimum  required version  of cmake  for a  project.
-cmake_minimum_required(VERSION 2.6)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-# Add an executable to the project using the specified source files.
-add_executable(tetgen tetgen.cxx predicates.cxx)
+## generate variables with the sources
+set( TETGEN_SOURCES     
+ 	${CMAKE_CURRENT_SOURCE_DIR}/tetgen.cxx
+     )
 
-#Add a library to the project using the specified source files. 
-# In Linux/Unix, it will creates the libtet.a
-add_library(tet STATIC tetgen.cxx predicates.cxx)
+set( UNOPTIMIZED_PREDICATES ${CMAKE_CURRENT_SOURCE_DIR}/predicates.cxx )
 
-#Set properties on a target. 
-#We use this here to set -DTETLIBRARY for when compiling the
-#library
-set_target_properties(tet PROPERTIES "COMPILE_DEFINITIONS" TETLIBRARY)
+##removing optimizations
+SET_SOURCE_FILES_PROPERTIES(${UNOPTIMIZED_PREDICATES} PROPERTIES COMPILE_FLAGS -O0)
+SET_SOURCE_FILES_PROPERTIES(${TETGEN_SOURCES} PROPERTIES COMPILE_FLAGS -O2)
+
+###############################################################
+add_definitions( -DTETLIBRARY )
+add_definitions( -w )
+#perform platform specific defintions
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    add_definitions( -DCPU86 )
+    add_definitions( -DNO_TIMER )
+else(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    add_definitions( -DLINUX )
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
+###############################################################
+add_library(tetgen STATIC ${TETGEN_SOURCES} ${UNOPTIMIZED_PREDICATES} )
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+target_link_libraries(tetgen m)
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+# install(TARGETS tetgen DESTINATION libs )
