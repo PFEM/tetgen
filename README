@@ -1,25 +1,14 @@
-This is TetGen version 1.5 (released on November 4, 2013)
+This is TetGen version 1.4.0 (released on January 14, 2006)
 
-Please see the documentation of TetGen for compiling and using TetGen.
-It is available at the following link:
+Please see the user's manul (available at the following link) for compiling
+and using TetGen.
 
-            http://www.tetgen.org
+            http://tetgen.berlios.de/index.html
 
-For more information on this product, contact :
+TetGen may be freely copied, modified, and redistributed under the
+following copyright notices stated in the file LICENSE.
 
-  Hang Si
-  Research Group of Numerical Mathematics and Scientific Computing
-  Weierstrass Institute for Applied Analysis and Stochastics
-  Mohrenstr. 39
-  10117 Berlin, Germany
+Please send bugs/comments to Hang Si <si@wias-berlin.de>
 
- Phone: +49 (0) 30-20372-446   Fax: +49 (0) 30-2044975
- EMail: <si@wias-berlin.de>
- Web Site: http://www.wias-berlin.de/~si
-
-------------------- IMPORTANCE NOTICE -----------------------------
-
-BEFORE INTALLING OR USING TetGen(R) READ the 
-GENERAL LICENSE TERMS AND CONDITIONS
-
--------------------------------------------------------------------
+Hang Si
+January, 2006
